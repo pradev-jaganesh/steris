@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+<modelVersion>4.0.0</modelVersion>
+<groupId>org.com.steris</groupId>
+<artifactId>com.steris</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<dependencies>
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-core_2.11</artifactId>
+    <version>2.3.3</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming -->
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming-kafka-0-10 -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+    <version>2.3.2</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-streaming -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-streaming_2.11</artifactId>
+    <version>2.3.2</version>
+    <scope>provided</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
+<dependency>
+    <groupId>org.apache.spark</groupId>
+    <artifactId>spark-sql_2.11</artifactId>
+    <version>2.3.3</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/net.hamnaberg/hbase-scala 
+<dependency>
+    <groupId>net.hamnaberg</groupId>
+    <artifactId>hbase-scala_2.11</artifactId>
+    <version>2.0.2</version>
+</dependency> -->
+
+<!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
+<dependency>
+    <groupId>org.apache.hbase</groupId>
+    <artifactId>hbase-client</artifactId>
+    <version>2.0.2</version>
+</dependency>
+
+
+<!-- https://mvnrepository.com/artifact/net.hamnaberg/hbase-scala -->
+<dependency>
+    <groupId>net.hamnaberg</groupId>
+    <artifactId>hbase-scala_2.11</artifactId>
+    <version>0.4.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-hdfs -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-hdfs</artifactId>
+    <version>3.1.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-core -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-core</artifactId>
+    <version>1.2.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-common -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-common</artifactId>
+    <version>3.1.0</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.hadoop/hadoop-yarn-common -->
+<dependency>
+    <groupId>org.apache.hadoop</groupId>
+    <artifactId>hadoop-yarn-common</artifactId>
+    <version>3.1.0</version>
+</dependency>
+
+
+
+
+</dependencies>
+<build>
+<plugins>
+<!-- mixed scala/java compile -->
+<plugin>
+<groupId>org.scala-tools</groupId>
+<artifactId>maven-scala-plugin</artifactId>
+<executions>
+
+</executions>
+</plugin>
+<plugin>
+<artifactId>maven-compiler-plugin</artifactId>
+<configuration>
+<source>1.8</source>
+<target>1.8</target>
+</configuration>
+</plugin>
+<!-- for fatjar -->
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-assembly-plugin</artifactId>
+<version>2.4</version>
+<configuration>
+<descriptorRefs>
+<descriptorRef>jar-with-dependencies</descriptorRef>
+</descriptorRefs>
+</configuration>
+<executions>
+<execution>
+<id>assemble-all</id>
+<phase>package</phase>
+<goals>
+<goal>single</goal>
+</goals>
+</execution>
+</executions>
+</plugin>
+<plugin>
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-jar-plugin</artifactId>
+<configuration>
+<archive>
+<manifest>
+<addClasspath>true</addClasspath>
+<mainClass>fully.qualified.MainClass</mainClass>
+</manifest>
+</archive>
+</configuration>
+</plugin>
+</plugins>
+<pluginManagement>
+<plugins>
+<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
+<plugin>
+<groupId>org.eclipse.m2e</groupId>
+<artifactId>lifecycle-mapping</artifactId>
+<version>1.0.0</version>
+<configuration>
+<lifecycleMappingMetadata>
+<pluginExecutions>
+<pluginExecution>
+<pluginExecutionFilter>
+<groupId>org.scala-tools</groupId>
+<artifactId> maven-scala-plugin </artifactId>
+<versionRange> [2.15.2,) </versionRange>
+<goals>
+<goal>compile</goal>
+<goal>testCompile</goal>
+</goals>
+</pluginExecutionFilter>
+<action>
+<execute/>
+</action>
+</pluginExecution>
+</pluginExecutions>
+</lifecycleMappingMetadata>
+</configuration>
+</plugin>
+</plugins>
+</pluginManagement>
+</build>
+</project>
